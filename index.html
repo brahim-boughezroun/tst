@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#05050a" />
+    <meta name="description" content="Open a neon hand-controlled rift in your browser using MediaPipe hand tracking." />
+    <title>Hand Rift</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark"></span>
+          <span>HAND RIFT</span>
+        </div>
+        <span class="privacy">Camera processing stays in your browser</span>
+      </header>
+
+      <main class="shell">
+        <section class="stage-card">
+          <div class="stage-head">
+            <div>
+              <p class="eyebrow">REAL-TIME HAND TRACKING</p>
+              <h1>Open the rift.</h1>
+            </div>
+            <div id="statusChip" class="status-chip">OFFLINE</div>
+          </div>
+
+          <div id="stage" class="stage">
+            <video id="webcam" playsinline muted></video>
+            <canvas id="canvas"></canvas>
+
+            <div id="startOverlay" class="start-overlay">
+              <div class="orb"></div>
+              <h2>Ready to begin?</h2>
+              <p>Allow camera access, show both hands, then pinch thumb + index finger on both hands.</p>
+              <button id="startButton" class="primary-button">Start camera</button>
+              <p id="errorText" class="error-text" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="instruction">
+              <span class="step">1</span><span>Show both hands</span>
+              <span class="step">2</span><span>Pinch both</span>
+              <span class="step">3</span><span>Pull apart</span>
+            </div>
+            <button id="resetButton" class="ghost-button" disabled>Reset rift</button>
+          </div>
+        </section>
+
+        <aside class="info-card">
+          <p class="eyebrow">HOW IT WORKS</p>
+          <h2>Gesture → energy → portal</h2>
+          <p>MediaPipe tracks 21 landmarks on each hand. The app measures your thumb-to-index pinch, charges while both hands stay pinched, then opens the portal as your hands move apart.</p>
+          <div class="legend">
+            <div><span class="dot cyan"></span> Left hand</div>
+            <div><span class="dot purple"></span> Right hand</div>
+            <div><span class="dot white"></span> Pinch point</div>
+          </div>
+          <div class="tip"><strong>Tip:</strong> Use good lighting and keep both hands fully visible.</div>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
